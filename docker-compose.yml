@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 
 services:
   postgres-server:
@@ -9,7 +9,8 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - docker-volume:/var/lib/postgresql/data
+      # - docker-volume:/var/lib/postgresql/data
+      - E:\PostgresDocker\Docker-Compose\PostgreSQL
     networks:
       - postgres-compose-network
     restart: unless-stopped
@@ -26,10 +27,10 @@ services:
     networks:
       - postgres-compose-network
 
-networks: 
+networks:
   postgres-compose-network:
     driver: bridge
-    
+
 volumes:
   docker-volume:
-    driver: local    
+    driver: local

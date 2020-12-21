@@ -1,41 +1,52 @@
-// class actionService extends IBase {
-//   constructor() {
-//     super();
-//   }
+const Action = require("../models/ActionModel");
 
-//   // async create(item) {
-//   //   actionModel
-//   //     .create({
-//   //       code: item.code,
-//   //       description: item.description,
-//   //     })
-//   //     .then(() => {
-//   //       return true;
-//   //     });
-//   // }
+class actionService {
+  constructor() {}
 
-//   getAll() {
-//     //  Action.findAll()
-//     //    .sort({ code: 1 }) //para trazer em ordem descendente, passe -1
-//     //    .then((actions) => {
-//     //      res.send(actions);
-//     //    })
-//     //    .catch((err) => {
-//     //      res.status(500).send({
-//     //        message:
-//     //          err.message ||
-//     //          "Ocorreu algo errado ao obter os produtos do Banco de Dados.",
-//     //      });
-//     //    });
+  async getAll(code, description) {
+    try {
+      console.log("chegou no service");
+      let result = null;
+      if (code == null && description == null) {
+        console.log("dentro do if");
+        result = await Action.findAll();
+      } else {
+        result = await Action.findAll({
+          where: {
+            code: code,
+          },
+        });
+      }
+      return result;
+    } catch (err) {
+      return false;
+    }
+  }
 
-//     Action.findAll({ raw: false }).then((result) => {
-//       console.log("Service chegou", result);
-//       return result;
-//     });
-//   }
-// }
+  async post(req) {
+    try {
+      const { code, description } = req.body;
 
-// // actionService.get();
-// // actionService.create();
+      Action.create({
+        code: code.toUpperCase(),
+        description: description,
+      });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 
-// module.exports = actionService;
+  async getById(id) {
+    console.log("id:", id);
+    try {
+      var result = await Action.findOne({ where: { id: id } });
+      console.log("resultado:", result);
+      return result;
+    } catch (error) {
+      return false;
+    }
+  }
+}
+
+module.exports = actionService;

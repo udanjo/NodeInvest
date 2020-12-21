@@ -1,12 +1,11 @@
 const Sequelize = require("sequelize");
 const db = require("../../database");
-const operation = require("./OperationModel");
 
 const action = db.define(
-  "i_acao",
+  "iacao",
   {
     code: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(5),
       allowNull: false,
       comment: "Código do Ativo",
       field: "codigo",
@@ -24,7 +23,6 @@ const action = db.define(
   }
 );
 
-// action.hasMany(operation);
-action.sync({ force: true }).then(() => {});
+action.sync({ force: false }).then(() => {});
 
 module.exports = action;

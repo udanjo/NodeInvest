@@ -3,7 +3,7 @@ const db = require("../../database");
 const action = require("./ActionModel");
 
 const operation = db.define(
-  "i_operacao",
+  "ioperacao",
   {
     type: {
       type: Sequelize.INTEGER,
@@ -47,6 +47,6 @@ operation.belongsTo(action, {
   through: "acao_operation",
   foreignKey: "actionId",
 });
-operation.sync({ force: true }).then(() => {});
+operation.sync({ force: false }).then(() => {});
 
 module.exports = operation;
