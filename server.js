@@ -2,8 +2,13 @@ const express = require("express"); // Importa o pacote
 // const expressValidator = require("express-validator");
 const cors = require("cors"); // usar segurança cors para requisição
 const bodyParser = require("body-parser"); // usado para receber dados por body na request
-const config = require("./configs/config.js"); // arquivo de configuração
+//const config = require("./src/config/database.js"); // arquivo de configuração
 const app = express(); // Instancia ele
+
+require("dotenv").config();
+
+//Força atualização e vinculo do banco de dados
+require("./src/database");
 
 // Adiciona politicas Cors
 app.use(cors());
@@ -12,39 +17,21 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// adcionando o uso do ExpressValidador
-//app.use(expressValidator());
-// app.use(
-//   expressValidator({
-//     errorFormatter: function (param, msg, value) {
-//       var namespace = param.split("."),
-//         root = namespace.shift(),
-//         formParam = root;
-
-//       while (namespace.length) {
-//         formParam += "[" + namespace.shift();
-//       }
-//       return {
-//         param: formParam,
-//         msg: msg,
-//         value: value,
-//       };
-//     },
-//   })
-// );
-
 // rota default /
 app.get("/", (req, res) => {
   res.json({
     message:
-      "Seja bem vindo a API " + config.nomeAPI + " versão " + config.versaoAPI,
+      "Seja bem vindo a API " +
+      process.env.NAMEAPI +
+      " versão " +
+      process.env.VERSIONAPI,
   });
 });
 
 // obtendo as demais rotas
-require("./src/Routes/index")(app);
+require("./src/Routes/mapRoutes.js")(app);
 
 // Porta de execução do servidor
-app.listen(config.portaServidor, () => {
-  console.log("Servidor Web está ouvindo na porta " + config.portaServidor);
+app.listen(process.env.PORT_SERVER, () => {
+  console.log("Servidor Web está ouvindo na porta " + process.env.PORT_SERVER);
 });
