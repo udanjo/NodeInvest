@@ -5,7 +5,8 @@ const bodyParser = require("body-parser"); // usado para receber dados por body 
 //const config = require("./src/config/database.js"); // arquivo de configuração
 const app = express(); // Instancia ele
 
-require("dotenv").config();
+//Definindo ambiente do projeto
+require("dotenv").config({ path: `.env.${process.env.NODE_ENV}` });
 
 //Força atualização e vinculo do banco de dados
 require("./src/database");
@@ -17,7 +18,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// rota default /
+//rota default
 app.get("/", (req, res) => {
   res.json({
     message:

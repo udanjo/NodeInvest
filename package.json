@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "set NODE_ENV=development&& nodemon server.js",
+    "prod": "set NODE_ENV=production&& nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -14,11 +15,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "joi": "^17.3.0",
     "nodemon": "^2.0.6",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0",
-    "validator": "^13.5.2"
+    "sequelize-cli": "^6.2.0"
   }
 }
