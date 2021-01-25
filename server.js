@@ -36,3 +36,5 @@ require("./src/Routes/mapRoutes.js")(app);
 app.listen(process.env.PORT_SERVER, () => {
   console.log("Servidor Web está ouvindo na porta " + process.env.PORT_SERVER);
 });
+
+module.exports = app;

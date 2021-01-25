@@ -4,7 +4,7 @@ const validator = require("../validators/ValidatorHelper");
 const { auth } = require("../middleware/AuthenticateHelper.js");
 
 module.exports = (app) => {
-  app.get("/active", auth, ActiveController.get);
+  app.get("/active", ActiveController.get);
   app.get("/active/:id", auth, ActiveController.getById);
 
   app.post(
