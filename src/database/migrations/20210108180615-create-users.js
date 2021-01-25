@@ -30,7 +30,7 @@ module.exports = {
       },
       password: {
         allowNull: false,
-        type: DataTypes.STRING(6),
+        type: DataTypes.STRING(80),
         field: "Senha",
       },
     });

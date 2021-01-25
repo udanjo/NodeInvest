@@ -41,23 +41,3 @@ function MessageError(error) {
   }
   return message;
 }
-
-// function MessageError(errors, property) {
-//   errors.forEach((err) => {
-//     switch (err.type) {
-//       case "string.requerid":
-//       case "string.empty":
-//         err.message = `${property} é campo de preenchimento obrigatório`;
-//         break;
-//       case "string.min":
-//         err.message = `Value should have at least ${err.context.limit} characters!`;
-//         break;
-//       case "string.max":
-//         err.message = `Value should have at most ${err.context.limit} characters!`;
-//         break;
-//       default:
-//         break;
-//     }
-//   });
-//   return errors;
-// }

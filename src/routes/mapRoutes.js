@@ -1,11 +1,13 @@
 const OperationRoute = require("./OperationRoute");
 const ActiveRoute = require("./ActiveRoute");
 const UserRoute = require("./UserRoute");
+const LoginRoute = require("./LoginRoute");
 
 module.exports = (app) => {
   OperationRoute(app);
   ActiveRoute(app);
   UserRoute(app);
+  LoginRoute(app);
 };
 
 //----------------------------------------- exemplos

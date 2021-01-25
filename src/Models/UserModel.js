@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require("sequelize");
+const crypto = require("crypto");
 
 class UserModel extends Model {
   static init(sequelize) {
@@ -25,6 +26,7 @@ class UserModel extends Model {
           allowNull: false,
           type: DataTypes.STRING(6),
           field: "Senha",
+          //Set: (value) => crypto.createHash("md5").update(value).digest("hex"),
         },
       },
       {
@@ -35,6 +37,13 @@ class UserModel extends Model {
         tableName: "i_usuario",
       }
     );
+    this.addHook("beforeSave", async (user) => {
+      if (user.password) {
+        let password = user.password;
+        user.password = crypto.createHash("md5").update(password).digest("hex");
+      }
+    });
+    return this;
   }
 
   // static associate(models) {

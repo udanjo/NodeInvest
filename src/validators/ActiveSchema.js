@@ -5,8 +5,10 @@ const ActiveSchema = {
     code: Joi.string().required().min(5),
     description: Joi.string().required().max(250),
   }),
-  ActiveGet: Joi.object().keys({
-    code: Joi.string().required(),
+  ActivePut: Joi.object().keys({
+    id: Joi.number().required().unsafe(),
+    code: Joi.string().required().min(5),
+    description: Joi.string().required().max(250),
   }),
 };
 

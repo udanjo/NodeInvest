@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    return queryInterface.createTable("i_operation", {
+    return queryInterface.createTable("i_operacao", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -43,6 +43,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    return queryInterface.dropTable("i_operation");
+    return queryInterface.dropTable("i_operacao");
   },
 };
